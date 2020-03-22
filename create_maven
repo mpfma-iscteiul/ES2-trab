@@ -1,0 +1,39 @@
+### Create Maven Repository
+#Create a directory named mavenrepo
+mkdir mavenrepo
+
+#Move into the dir
+cd mavenrepo
+
+#Initialise with git
+git init
+
+#Add remote repo
+git remote add origin git@github.com:<username>/<mavenrepo>.git
+
+#Create releases and snapshots dir 
+mkdir releases snapshots
+
+#Create README.md under each dir
+touch releases/README.md
+touch snapshots/README.md
+
+#Git add all files
+git add .
+
+#Git commit with a msg
+git commit -m "Initial Setup"
+
+#Push to remote
+git push origin master
+
+### Generating maven artifacts
+mvn clean org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file -DgroupId=com.company.id -DartifactId=artificat-id -Dversion=1.0.0 -DpomFile=pom.xml -Dpackaging=aar -Dfile=artifact.aar  -DlocalRepositoryPath=./mavenrepo/releases/aar -DgeneratePom=true -DcreateChecksum=true
+
+### Adding and pushing artifacts to remote maven repo
+git add .
+git commit -m "<artifact> v1.0.0 added"
+git push origin master
+@crearo
+crearo commented on 11 Jul 2018
+How do I generat
